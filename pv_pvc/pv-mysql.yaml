@@ -1,0 +1,68 @@
+# mysql-pvs.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mysql-cnf-0
+spec:
+  capacity:
+    storage: 20Mi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ""
+  claimRef:
+    name: mysql-cnf-stateful-0
+    namespace: test 
+  nfs:
+    server: 192.168.88.60
+    path: /nfs/data/mysql-cnf-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mysql-data-0
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ""
+  claimRef:
+    name: mysql-data-stateful-0
+    namespace: test
+  nfs:
+    server: 192.168.88.60
+    path: /nfs/data/mysql-data-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mysql-cnf-1
+spec:
+  capacity:
+    storage: 20Mi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ""
+  claimRef:
+    name: mysql-cnf-stateful-1
+    namespace: test 
+  nfs:
+    server: 192.168.88.60
+    path: /nfs/data/mysql-cnf-1
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mysql-data-1
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ""
+  claimRef:
+    name: mysql-data-stateful-1
+    namespace: test 
+  nfs:
+    server: 192.168.88.60
+    path: /nfs/data/mysql-data-1

@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: crontab
+  namespace: test
+spec:
+  schedule: "*/1 * * * *"    #分、时、日、月、周
+  jobTemplate:
+    # kind: Job
+    spec:  ## 以下是Job的写法
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date >> /1.txt; 
+          restartPolicy: OnFailure

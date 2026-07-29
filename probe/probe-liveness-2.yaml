@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "probe-liveness-2"
+  namespace: test 
+  labels:
+    app: "probe-liveness-2"
+spec:
+  volumes:
+  - name: nginx-vol
+    hostPath: 
+      path: /app
+  - name: nginx-html
+    hostPath: 
+      path: /html
+  containers:
+  - name: nginx
+    image: "nginx"
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: nginx-vol
+      mountPath: /app
+    - name: nginx-html
+      mountPath: /usr/share/nginx/html
+    livenessProbe:   ## nginx容器有没有 /abc.html，就绪探针
+      exec:
+        command:  ["/bin/sh","-c","cat /usr/share/nginx/html/abc.html"]  ## 返回不是0，那就是探测失败
+      periodSeconds: 1  ## 每隔几秒来运行这个
+      timeoutSeconds: 5  ##探测超时，到了超时时间探测还没返回结果说明失败
+      successThreshold: 1 ## 成功阈值，连续几次成才算成功
+      failureThreshold: 3 ## 失败阈值，连续几次失败才算真失败
+        
+
+    

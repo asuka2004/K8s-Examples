@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: km-token
+  namespace: test 
+  annotations:
+    kubernetes.io/service-account.name: km   # ← 綁定到 lfy 這個 SA
+type: kubernetes.io/service-account-token

@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: canary-rule-v1
+  namespace: test
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: test.canary.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-canary-v1  
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: canary-rule-v2
+  namespace: test
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-by-header: "haha"
+    nginx.ingress.kubernetes.io/canary-by-cookie: "ccc"
+    nginx.ingress.kubernetes.io/canary-weight: "80"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: test.canary.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-canary-v2
+            port:
+              number: 80
+

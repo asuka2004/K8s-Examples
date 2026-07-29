@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "pod-nodeaffinity"
+  namespace: test
+  labels:
+    app: nodeaffinity
+spec:
+  containers:
+  - name: nodeaffinity
+    image: "busybox"
+    command: ["sleep","3600"]
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: ## 硬标准
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            values: ["ssd", "hdd"]
+            operator: In
+

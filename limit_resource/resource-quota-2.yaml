@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: test-resource-2
+  namespace: test
+spec:
+  hard:
+    count/pods: 3

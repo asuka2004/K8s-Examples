@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-affinity
+  namespace: test
+  labels:
+    app: pod-affinity
+spec:
+  selector:
+    matchLabels:
+      app: pod-affinity
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: pod-affinity
+    spec:
+      containers:
+      - name: pod-affinity
+        image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-affinity
+  namespace: test
+spec:
+  selector:
+    app: pod-affinity
+  type: ClusterIP
+  ports:
+  - name: svc-affinity
+    port: 80
+    targetPort: 80
+    protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: affinity-1
+  namespace: test
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "it666.com"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: it666.com
+    http:
+      paths:
+      - path: /    ### 如果以前這個域名下的這個路徑相同的功能有配置過，以最後一次生效
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-affinity   ###
+            port:
+              number: 80
+

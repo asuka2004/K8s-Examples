@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-label
+  labels:
+    aa: bb
+    app: nginx 
+  namespace: test 
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    imagePullPolicy: Always
+  imagePullSecrets:
+  - name: docker

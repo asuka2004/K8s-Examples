@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rule-3
+  namespace: test
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rps: "1"
+
+spec:
+  ingressClassName: nginx
+  defaultBackend: ## 只要未指定的映射路徑
+    service:
+      name: php-apache
+      port:
+        number: 80
+  rules:
+  - host: it888.com
+    http:
+      paths:
+      - path: /bbbb
+        pathType: Prefix
+        backend:
+          service:  
+            name: php-apache 
+            port:
+              number: 80  

@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-subdomain 
+  namespace: test
+spec:
+  selector:
+    name: cluster 
+  clusterIP: None
+  ports:
+  - name: foo # 实际上不需要指定端口号
+    port: 1234
+    targetPort: 1234
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+  namespace: test
+  labels:
+    name: cluster
+spec:
+  hostname: pod-1
+  subdomain: svc-subdomain 
+## 指定必须和svc名称一样，才可以 podName.subdomain.名称空间.svc.cluster.local访问。否
+#则访问不同指定Pod
+  containers:
+  - image: busybox:1.28
+    command:
+      - sleep
+      - "3600"
+    name: busybox
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-2
+  namespace: test
+  labels:
+    name: cluster
+spec:
+  hostname: pod-2
+  subdomain: svc-subdomain
+  containers:
+  - image: busybox:1.28
+    command:
+      - sleep
+      - "3600"
+    name: busybox

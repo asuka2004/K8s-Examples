@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "pvc-pod"
+  namespace: test
+  labels:
+    app: "pvc-pod"
+spec:
+  restartPolicy: Always       
+  containers:
+  - name: pvc-pod
+    image: "nginx"
+    ports:
+    - containerPort: 80
+      name: http
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+    - name: html
+      mountPath: /usr/share/nginx/html/
+        #type: DirectoryOrCreate
+  volumes:
+  - name: localtime
+    hostPath:
+      path: /usr/share/zoneinfo/Asia/Taipei
+  - name: html
+    persistentVolumeClaim:
+       claimName: pvc-10m
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-10m
+  namespace: test 
+  labels:
+    app: pvc-10m
+spec:
+  storageClassName: managed-nfs-storage ## 存储类的名字
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+

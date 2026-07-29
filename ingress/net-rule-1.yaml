@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-rule-1
+  namespace: test
+spec:
+  podSelector: ## pod選擇器
+    matchLabels:
+      app: net-rule ### 選中的Pod就會被隔離起來
+  policyTypes:
+    - "Ingress"
+    - "Egress"
+  ingress: ## 入站白名單
+  - from:
+      - podSelector:
+          matchLabels:
+            app: net-rule  
+    # - namespaceSelector:
+    #     matchLabels:
+    #        kubernetes.io/metadata.name: default
+    #- ipBlock:
+        #cidr: "10.123.16.160/24"
+        #except:
+        #- 10.123.16.2/32     
+    ports:
+      - port: 80 
+  egress: ## 出站白名單
+  - to:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: test 
+    ports:
+      - port: 80      

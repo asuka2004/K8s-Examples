@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-pod-anti
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: anti
+  replicas: 5 
+  template:
+    metadata:
+      labels:
+        app: anti
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - anti
+            topologyKey: "kubernetes.io/hostname" # 不能再同一個拓撲網絡
+      containers:
+      - name: nginx
+        image: nginx:1.12-alpine
+

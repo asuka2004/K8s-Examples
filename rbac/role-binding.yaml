@@ -1,0 +1,52 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: test 
+  name: pod-reader
+rules:
+- apiGroups: [""] # "" 标明 core API 组
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" 被忽略，因为 ClusterRoles 不受名字空间限制
+  name: secret-reader
+rules:
+- resources: ["secrets"]
+  apiGroups: [""]
+  verbs: ["get", "watch", "list"]
+- resources: ["configmaps"]
+  apiGroups: [""]
+  verbs: ["get", "watch", "list"]
+---
+# 綁定 pod-reader(Role,只在 test namespace 生效)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: km-pod-reader
+  namespace: test
+subjects:
+- kind: ServiceAccount
+  name: km
+  namespace: test
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+# 綁定 secret-reader(ClusterRole,但用 RoleBinding 綁定,可以讓效果只限定在 test namespace)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: km-secret-reader
+  namespace: test
+subjects:
+- kind: ServiceAccount
+  name: km
+  namespace: test
+roleRef:
+  kind: ClusterRole
+  name: secret-reader
+  apiGroup: rbac.authorization.k8s.io

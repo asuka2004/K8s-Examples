@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-limit
+  namespace: test
+spec:
+  containers:
+  - name: limit
+    image: nginx:1.20.0-alpine
+    resources:
+      limits:
+        memory: "800Mi"
+        cpu: "910m"
+      requests:
+        memory: "600Mi"
+        cpu: "900m"
+

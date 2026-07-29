@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset
+  namespace: test
+  labels:
+    app: dae
+spec:
+  selector:
+    matchLabels:
+      app: dae
+  template:
+    metadata:
+      labels:
+        app: dae
+    spec:
+      containers:
+      - name: dae
+        image: nginx

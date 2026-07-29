@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "probe-liveness-1"
+  namespace: test
+  labels:
+    app: "probe-liveness-1"
+spec:
+  volumes:
+  - name: nginx-html
+    hostPath: 
+      path: /tmp
+  containers:
+  - name: nginx
+    image: "nginx"
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: nginx-html
+      mountPath: /usr/share/nginx/html
+    livenessProbe:   ## nginx容器有没有 /abc.html，就绪探针
+      httpGet:
+        path: /abc.html
+        port: 80
+        scheme: HTTP
+      periodSeconds: 1  ## 每隔几秒来运行这个
+      successThreshold: 1 ## 成功阈值，连续几次成才算成功
+      failureThreshold: 2 ## 失败阈值，连续几次失败才算真失败
+
+    
