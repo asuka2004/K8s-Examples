@@ -1,12 +1,11 @@
 apiVersion: apps/v1 ###
 kind: Deployment ##
 metadata:
-  name:  test-deploy   ### 遵循域名編寫規範
+  name:  test-deploy   
   namespace: test 
   labels:
     #dep:  test-01
     app: cluster
-### 期望狀態
 spec:
   strategy:
     type: RollingUpdate
@@ -14,12 +13,12 @@ spec:
       maxUnavailable: 2
       maxSurge: 20
   replicas: 20 
-  selector:   ### 選擇器
-    matchLabels:   ### 匹配標籤
-      #pod-name: nginx-01 ### 和模板template裡面的pod的標籤必須一樣
+  selector:   
+    matchLabels:   
+      #pod-name: nginx-01 
       app: cluster
   template:
-    metadata:   ### pod的metadata
+    metadata:   
       labels:
         #pod-name: nginx-01
         app: cluster

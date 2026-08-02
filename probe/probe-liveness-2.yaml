@@ -23,13 +23,13 @@ spec:
       mountPath: /app
     - name: nginx-html
       mountPath: /usr/share/nginx/html
-    livenessProbe:   ## nginx容器有没有 /abc.html，就绪探针
+    livenessProbe:   ##
       exec:
-        command:  ["/bin/sh","-c","cat /usr/share/nginx/html/abc.html"]  ## 返回不是0，那就是探测失败
-      periodSeconds: 1  ## 每隔几秒来运行这个
-      timeoutSeconds: 5  ##探测超时，到了超时时间探测还没返回结果说明失败
-      successThreshold: 1 ## 成功阈值，连续几次成才算成功
-      failureThreshold: 3 ## 失败阈值，连续几次失败才算真失败
+        command:  ["/bin/sh","-c","cat /usr/share/nginx/html/abc.html"]  #
+      periodSeconds: 1  #
+      timeoutSeconds: 5  #
+      successThreshold: 1 #
+      failureThreshold: 3 #
         
 
     

@@ -2,9 +2,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: all-global
-subjects: ## 主体
+subjects: #
 - kind: ServiceAccount
-  name: km # 'name' 是不区分大小写的
+  name: km 
   namespace: test
   apiGroup: ""
 roleRef:

@@ -18,7 +18,7 @@ spec:
       containers:
       - name: mysql
         image: mysql:8.0.25
-        securityContext: ## 指定安全上下文
+        securityContext: #
           runAsUser: 1000
           runAsGroup: 1000
         ports:
@@ -64,10 +64,10 @@ spec:
     app: mysql
   type: NodePort
   # type: ClusterIP
-  # clusterIP: None ## 沒有集群ip，只能通過內部的dns訪問 mysql-cluster-0.mysql.default
+  # clusterIP: None 
   ports:
   - name: svc-mysql
-    port: 3306 ## service端口
-    targetPort: 3306 ## pod端口
+    port: 3306  
+    targetPort: 3306 
     protocol: TCP
 

@@ -29,10 +29,10 @@ metadata:
 spec:
   selector:
     app: cluster
-  type: NodePort        # 改为 NodePort
+  type: NodePort        #
   ports:
   - name: http
     port: 80
     targetPort: 80
     protocol: TCP
-    nodePort: 31110     # 范围 30000–32767
+    nodePort: 31110     #

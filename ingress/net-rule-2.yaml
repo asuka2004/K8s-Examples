@@ -4,13 +4,13 @@ metadata:
   name: net-rule-2
   namespace: test
 spec:
-  podSelector:  ## 选中指定Pod
+  podSelector:  #
     matchLabels:
       role: db
-  policyTypes:  ## 定义上面Pod的入站出站规则
+  policyTypes:  #
   - Ingress
   - Egress
-  ingress:    ## 定义入站白名单
+  ingress:    ##
   - from:   
     - ipBlock:
         cidr: 192.168.88.0/24
@@ -25,7 +25,7 @@ spec:
     ports:
     - protocol: TCP
       port: 30736
-  egress:  ## 定义出站白名单
+  egress:  ## 
   - to:
     - ipBlock:
         cidr: 192.168.88.0/24

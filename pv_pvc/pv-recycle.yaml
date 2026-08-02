@@ -11,8 +11,8 @@ spec:
     storage: 10Mi
   accessModes:
   - ReadWriteOnce
-  nfs: ## 使用nfs存储系统
-    server: 192.168.88.60 ## 没type
-    path: /nfs/data/recycle ### abc文件夹提前创建
+  nfs: #
+    server: 192.168.88.60 #
+    path: /nfs/data/recycle #
 
 

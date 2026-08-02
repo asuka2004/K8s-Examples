@@ -4,5 +4,5 @@ metadata:
   name: km-token
   namespace: test 
   annotations:
-    kubernetes.io/service-account.name: km   # ← 綁定到 lfy 這個 SA
+    kubernetes.io/service-account.name: km   
 type: kubernetes.io/service-account-token

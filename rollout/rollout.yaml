@@ -1,22 +1,21 @@
 apiVersion: apps/v1  ### 
 kind: Deployment  ## 
 metadata:
-  name:  test-rollout   ### 遵循域名编写规范
+  name:  test-rollout   
   namespace: test
   labels:
     dep:  test-04
-### 期望状态
 spec:
   strategy:
-    # type: Recreate   ### 把以前全部杀死，直接新建
+    # type: Recreate   
     type: RollingUpdate
     rollingUpdate: 
       maxUnavailable: 2
       maxSurge: 20%
   replicas: 20
-  selector:   ### 选择器
-    matchLabels:  ### 匹配标签
-      pod-name:  test-rollout  ### 和模板template里面的pod的标签必须一样
+  selector:   #
+    matchLabels:  #
+      pod-name:  test-rollout  #
   template:
     metadata:  ### pod的metadata
       labels:

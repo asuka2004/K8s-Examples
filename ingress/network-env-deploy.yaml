@@ -6,13 +6,13 @@ metadata:
 spec:
   selector:
     app: net-rule
-  type: NodePort             # 改为 NodePort
+  type: NodePort             # 
   ports:
   - name: http
     port: 80
     targetPort: 80
     protocol: TCP
-    #nodePort: 80          # 范围 30000-32767
+    #nodePort: 80          # 
 ---
 apiVersion: apps/v1
 kind: Deployment

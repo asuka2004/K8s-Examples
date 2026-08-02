@@ -8,7 +8,7 @@ spec:
     name: cluster 
   clusterIP: None
   ports:
-  - name: foo # 实际上不需要指定端口号
+  - name: foo # 
     port: 1234
     targetPort: 1234
 ---
@@ -22,8 +22,6 @@ metadata:
 spec:
   hostname: pod-1
   subdomain: svc-subdomain 
-## 指定必须和svc名称一样，才可以 podName.subdomain.名称空间.svc.cluster.local访问。否
-#则访问不同指定Pod
   containers:
   - image: busybox:1.28
     command:

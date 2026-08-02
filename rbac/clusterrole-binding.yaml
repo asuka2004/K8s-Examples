@@ -2,19 +2,18 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: ns-reader
-rules: ## 當前角色的規則
-- apiGroups: [""] # "" 標明 core API 組
-  resources: ["namespaces"] ## 獲取集群的所有名稱空間
-  verbs: ["get", "watch", "list","create"] # 動詞。
+rules: #
+- apiGroups: [""] # "" 
+  resources: ["namespaces"] #
+  verbs: ["get", "watch", "list","create"] #
 ---
-## 編寫角色和賬號的綁定關係
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: read-ns-global
-subjects: ## 主體
+subjects: #
 - kind: ServiceAccount
-  name: km # 'name' 是不區分大小寫的
+  name: km # 'name' 
   namespace: test
   apiGroup: "" 
 roleRef:

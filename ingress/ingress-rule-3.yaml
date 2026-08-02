@@ -8,7 +8,7 @@ metadata:
 
 spec:
   ingressClassName: nginx
-  defaultBackend: ## 只要未指定的映射路徑
+  defaultBackend: #
     service:
       name: php-apache
       port:

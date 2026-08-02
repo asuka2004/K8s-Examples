@@ -23,23 +23,23 @@ spec:
       mountPath: /app
     - name: nginx-html
       mountPath: /usr/share/nginx/html
-    readinessProbe: ##就绪检测，都是http
+    readinessProbe: #
       httpGet:  
-        path: /abc.html  ## 给容器发请求
+        path: /abc.html  #
         port: 80
-        scheme: HTTP ## 返回不是0，那就是探测失败
-      initialDelaySeconds: 2 ## 指定的这个秒以后才执行探测
-      periodSeconds: 1  ## 每隔几秒来运行这个
-      timeoutSeconds: 5  ##探测超时，到了超时时间探测还没返回结果说明失败
-      successThreshold: 3 ## 成功阈值，连续几次成才算成功
-      failureThreshold: 5 ## 失败阈值，连续几次失败才算真失败
+        scheme: HTTP # 
+      initialDelaySeconds: 2 #
+      periodSeconds: 1  #
+      timeoutSeconds: 5  #
+      successThreshold: 3 #
+      failureThreshold: 5 #
         
     # livenessProbe:
-    #   exec: ["/bin/sh","-c","sleep 30;abc "]  ## 返回不是0，那就是探测失败
-    #   initialDelaySeconds: 20 ## 指定的这个秒以后才执行探测
-    #   periodSeconds: 5  ## 每隔几秒来运行这个
-    #   timeoutSeconds: 5  ##探测超时，到了超时时间探测还没返回结果说明失败
-    #   successThreshold: 5 ## 成功阈值，连续几次成才算成功
-    #   failureThreshold: 5 ## 失败阈值，连续几次失败才算真失败
+    #   exec: ["/bin/sh","-c","sleep 30;abc "]  #
+    #   initialDelaySeconds: 20 #
+    #   periodSeconds: 5  #
+    #   timeoutSeconds: 5  #
+    #   successThreshold: 5 #
+    #   failureThreshold: 5 #
 
     

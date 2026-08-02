@@ -12,18 +12,18 @@ spec:
     command: ["sh","-c","sleep infinity"]
   affinity:
     nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution: ## 软性打分
-      - preference: ## 指定我们喜欢的条件 shib
+      preferredDuringSchedulingIgnoredDuringExecution: 
+      - preference: 
           matchExpressions:
           - key: disk
             values: ["70"]
             operator: Gt
-        weight: 90 ## 权重 0-100
-      - preference: ## 指定我们喜欢的条件
+        weight: 90 
+      - preference: 
           matchExpressions:
           - key: gpu
             values: ["4000"]
-            operator: Gt ## node1的gpu不满足这个条件
-        weight: 10 ## 权重 0-100
+            operator: Gt 
+        weight: 10 
 
 

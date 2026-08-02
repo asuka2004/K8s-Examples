@@ -10,7 +10,7 @@ spec:
     storage: 100Mi
   accessModes:
   - ReadWriteOnce
-  nfs: ## 使用nfs存储系统
-    server: 192.168.88.60 ## 没type
-    path: /nfs/data/cc ### abc文件夹提前创建
+  nfs: 
+    server: 192.168.88.60 #
+    path: /nfs/data/cc 
 

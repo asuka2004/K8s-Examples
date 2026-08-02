@@ -34,16 +34,15 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: 192.168.88.60 ## 修改為自己的nfs伺服器位址
+              value: 192.168.88.60 #
             - name: NFS_PATH
-              value: /nfs/data ## nfs伺服器共享目錄
+              value: /nfs/data ## 
       volumes:
         - name: nfs-client-root
           nfs:
             server: 192.168.88.60
             path: /nfs/data
 ---
-## 创建了一个存储类
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -51,11 +50,8 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner 
-#provisioner指定一个供应商的名字。  
-#必须匹配 k8s-deployment 的 env PROVISIONER_NAME的值
 parameters:
-  archiveOnDelete: "false"  ## 删除pv的时候，pv的内容是否要备份
-  #### 这里可以调整供应商能力。
+  archiveOnDelete: "false"  #
 ---
 apiVersion: v1
 kind: ServiceAccount

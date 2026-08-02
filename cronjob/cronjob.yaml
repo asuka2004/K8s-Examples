@@ -4,10 +4,10 @@ metadata:
   name: crontab
   namespace: test
 spec:
-  schedule: "*/1 * * * *"    #分、时、日、月、周
+  schedule: "*/1 * * * *"    
   jobTemplate:
     # kind: Job
-    spec:  ## 以下是Job的写法
+    spec:  
       template:
         spec:
           containers:

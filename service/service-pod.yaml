@@ -1,11 +1,10 @@
 apiVersion: apps/v1 ###
 kind: Deployment ##
 metadata:
-  name:  service-pod   ### 遵循域名編寫規範
+  name:  service-pod   #
   namespace: test
   labels:
     dep:  test
-### 期望狀態
 spec:
   strategy:
     type: RollingUpdate
@@ -13,8 +12,8 @@ spec:
       maxUnavailable: 2
       maxSurge: 20
   replicas: 3
-  selector:   ### 選擇器
-    matchLabels:   ### 匹配標籤
+  selector:   #
+    matchLabels:   #
       app: cluster
 ####
   template:

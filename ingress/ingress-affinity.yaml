@@ -48,7 +48,7 @@ spec:
   - host: it666.com
     http:
       paths:
-      - path: /    ### 如果以前這個域名下的這個路徑相同的功能有配置過，以最後一次生效
+      - path: /    ### 
         pathType: Prefix
         backend:
           service:

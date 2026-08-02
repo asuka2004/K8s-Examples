@@ -12,7 +12,7 @@ spec:
     command: ["sleep","3600"]
   affinity:
     nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution: ## 硬标准
+      requiredDuringSchedulingIgnoredDuringExecution: 
         nodeSelectorTerms:
         - matchExpressions:
           - key: disktype
