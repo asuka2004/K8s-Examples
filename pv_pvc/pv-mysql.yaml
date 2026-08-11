@@ -11,7 +11,7 @@ spec:
   storageClassName: ""
   claimRef:
     name: mysql-cnf-stateful-0
-    namespace: test 
+    namespace: prod 
   nfs:
     server: 192.168.88.60
     path: /nfs/data/mysql-cnf-0
@@ -28,7 +28,7 @@ spec:
   storageClassName: ""
   claimRef:
     name: mysql-data-stateful-0
-    namespace: test
+    namespace: prod
   nfs:
     server: 192.168.88.60
     path: /nfs/data/mysql-data-0
@@ -45,7 +45,7 @@ spec:
   storageClassName: ""
   claimRef:
     name: mysql-cnf-stateful-1
-    namespace: test 
+    namespace: prod 
   nfs:
     server: 192.168.88.60
     path: /nfs/data/mysql-cnf-1
@@ -62,7 +62,7 @@ spec:
   storageClassName: ""
   claimRef:
     name: mysql-data-stateful-1
-    namespace: test 
+    namespace: prod 
   nfs:
     server: 192.168.88.60
     path: /nfs/data/mysql-data-1
