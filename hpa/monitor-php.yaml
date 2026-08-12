@@ -3,7 +3,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   creationTimestamp: null
   name: php-apache
-  namespace: test
+  namespace: prod
 spec:
   maxReplicas: 10
   minReplicas: 1
