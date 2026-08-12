@@ -1,17 +1,16 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: test 
+  namespace: prod
   name: pod-reader
 rules:
-- apiGroups: [""] # "" 
+- apiGroups: [""]  
   resources: ["pods"]
   verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  # "namespace" 
   name: secret-reader
 rules:
 - resources: ["secrets"]
@@ -25,11 +24,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: km-pod-reader
-  namespace: test
+  namespace: prod
 subjects:
 - kind: ServiceAccount
-  name: km
-  namespace: test
+  name: hsieh
+  namespace: prod
 roleRef:
   kind: Role
   name: pod-reader
@@ -39,11 +38,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: km-secret-reader
-  namespace: test
+  namespace: prod
 subjects:
 - kind: ServiceAccount
-  name: km
-  namespace: test
+  name: hsieh
+  namespace: prod
 roleRef:
   kind: ClusterRole
   name: secret-reader

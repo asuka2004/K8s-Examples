@@ -2,19 +2,19 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: ns-reader
-rules: #
-- apiGroups: [""] # "" 
-  resources: ["namespaces"] #
-  verbs: ["get", "watch", "list","create"] #
+rules: 
+- apiGroups: [""]  
+  resources: ["namespaces"] 
+  verbs: ["get", "watch", "list","create"] 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: read-ns-global
-subjects: #
+subjects: 
 - kind: ServiceAccount
-  name: km # 'name' 
-  namespace: test
+  name: hsieh 
+  namespace: prod
   apiGroup: "" 
 roleRef:
   kind: ClusterRole

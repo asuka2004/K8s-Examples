@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: km-token
-  namespace: test 
+  name: hsieh-token
+  namespace: prod
   annotations:
-    kubernetes.io/service-account.name: km   
+    kubernetes.io/service-account.name: hsieh   
 type: kubernetes.io/service-account-token

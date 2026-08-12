@@ -4,8 +4,8 @@ metadata:
   name: all-global
 subjects: #
 - kind: ServiceAccount
-  name: km 
-  namespace: test
+  name: hsieh 
+  namespace: prod
   apiGroup: ""
 roleRef:
   kind: ClusterRole
