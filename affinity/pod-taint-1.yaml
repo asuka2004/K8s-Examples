@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "pod-taint-1"
-  namespace: test
+  name: taint-1
+  namespace: prod
   labels:
-    app: "pod-taint-1"
+    app: taint
 spec:
   containers:
-  - name: pod-taint-1
+  - name: pod-taint
     image: "busybox"
     command: ["sleep", "3600"]

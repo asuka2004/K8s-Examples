@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pod-redis
-  namespace: test
+  name: anti-1
+  namespace: prod
 spec:
   selector:
     matchLabels:
       app: store
-  replicas: 5
+  replicas: 4 
   template:
     metadata:
       labels:

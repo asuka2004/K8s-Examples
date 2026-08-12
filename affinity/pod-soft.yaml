@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-softaffinity
-  namespace: test
+  name: softaffinity
+  namespace: prod
   labels:
     app: softaffinity
 spec:

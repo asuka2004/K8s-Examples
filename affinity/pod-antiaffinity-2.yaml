@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pod-pod-anti
-  namespace: test
+  name: anti-2
+  namespace: prod
 spec:
   selector:
     matchLabels:
