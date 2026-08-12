@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nfs-client-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: test
+  namespace: prod
 spec:
   replicas: 1
   strategy:
@@ -58,7 +58,7 @@ kind: ServiceAccount
 metadata:
   name: nfs-client-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: test
+  namespace: prod
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -89,7 +89,7 @@ subjects:
   - kind: ServiceAccount
     name: nfs-client-provisioner
     # replace with namespace where provisioner is deployed
-    namespace: test
+    namespace: prod
 roleRef:
   kind: ClusterRole
   name: nfs-client-provisioner-runner
@@ -100,7 +100,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: leader-locking-nfs-client-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: test
+  namespace: prod
 rules:
   - apiGroups: [""]
     resources: ["endpoints"]
@@ -111,12 +111,12 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: leader-locking-nfs-client-provisioner
   # replace with namespace where provisioner is deployed
-  namespace: test
+  namespace: prod
 subjects:
   - kind: ServiceAccount
     name: nfs-client-provisioner
     # replace with namespace where provisioner is deployed
-    namespace: test
+    namespace: prod
 roleRef:
   kind: Role
   name: leader-locking-nfs-client-provisioner

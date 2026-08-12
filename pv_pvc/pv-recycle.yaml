@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-10m-recycl
+  name: persistent-recycl
   labels:
     type: local
 spec:
