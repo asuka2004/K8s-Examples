@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-net-rule-1
-  namespace: test
+  name: svc-net
+  namespace: prod
 spec:
   selector:
     app: net-rule
@@ -17,8 +17,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pod-net-rule-1
-  namespace: test
+  name: net-rule-1
+  namespace: prod
   labels:
     app: net-rule
 spec:

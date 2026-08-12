@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: rule-1
-  namespace: test
+  namespace: prod
 spec:
   ingressClassName: nginx
   rules:
@@ -11,21 +11,21 @@ spec:
       paths:
       - path: /
         pathType: Exact
-        backend: #
+        backend: 
           service:
-            name: svc-rule ## 
+            name: svc-rule  
             port:
-              number: 80 ## 
+              number: 80  
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: svc-rule 
-  namespace: test
+  namespace: prod
 spec:
   selector:
     app: rule-1
-  type: NodePort             #
+  type: NodePort             
   ports:
   - name: http
     port: 80
@@ -37,7 +37,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rule-pod
-  namespace: test
+  namespace: prod
   labels:
     app: rule-1 
 spec:

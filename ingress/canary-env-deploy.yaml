@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pod-v1
-  namespace: test
+  namespace: prod 
   labels:
     app: pod-v1
 spec:
@@ -23,7 +23,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pod-v2
-  namespace: test
+  namespace: prod
   labels:
     app: pod-v2
 spec:
@@ -44,8 +44,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-canary-v1
-  namespace: test
+  name: svc-v1
+  namespace: prod
 spec:
   selector:
     app: pod-v1
@@ -59,8 +59,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-canary-v2
-  namespace: test
+  name: svc-v2
+  namespace: prod 
 spec:
   selector:
     app: pod-v2

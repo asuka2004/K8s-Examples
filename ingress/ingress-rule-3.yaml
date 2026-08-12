@@ -2,13 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: rule-3
-  namespace: test
+  namespace: prod
   annotations:
     nginx.ingress.kubernetes.io/limit-rps: "1"
 
 spec:
   ingressClassName: nginx
-  defaultBackend: #
+  defaultBackend: 
     service:
       name: php-apache
       port:

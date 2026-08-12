@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pod-affinity
-  namespace: test
+  name: affinity
+  namespace: prod
   labels:
     app: pod-affinity
 spec:
@@ -23,7 +23,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: svc-affinity
-  namespace: test
+  namespace: prod
 spec:
   selector:
     app: pod-affinity
@@ -38,7 +38,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: affinity-2
-  namespace: test
+  namespace: prod
   annotations:
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "it666.com"
@@ -60,7 +60,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: it666-tls
-  namespace: test
+  namespace: prod
 spec:
   ingressClassName: nginx
   tls:

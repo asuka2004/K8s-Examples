@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: network-rule-1
-  namespace: test
+  name: net-rule-1
+  namespace: prod
 spec:
   podSelector: ## pod選擇器
     matchLabels:
@@ -28,6 +28,6 @@ spec:
   - to:
       - namespaceSelector:
           matchLabels:
-            kubernetes.io/metadata.name: test 
+            kubernetes.io/metadata.name: prod 
     ports:
       - port: 80      

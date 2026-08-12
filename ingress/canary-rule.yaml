@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: canary-rule-v1
-  namespace: test
+  name: canary-rule-1
+  namespace: prod
 spec:
   ingressClassName: nginx
   rules:
@@ -13,15 +13,15 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: svc-canary-v1  
+            name: svc-v1  
             port:
               number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: canary-rule-v2
-  namespace: test
+  name: canary-rule-2
+  namespace: prod
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-by-header: "haha"
@@ -37,7 +37,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: svc-canary-v2
+            name: svc-v2
             port:
               number: 80
 
