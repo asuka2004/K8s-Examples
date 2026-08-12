@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: daemonset
-  namespace: test
+  namespace: prod
   labels:
-    app: dae
+    app: daemonset
 spec:
   selector:
     matchLabels:
-      app: dae
+      app: daemonset
   template:
     metadata:
       labels:
-        app: dae
+        app: daemonset
     spec:
       containers:
       - name: dae

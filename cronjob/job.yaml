@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  namespace: test
+  namespace: prod
   name: job
 spec:
   completions: 7  
@@ -9,10 +9,10 @@ spec:
   template:
     spec:
       containers:
-      - name: ping
+      - name: ping-job
         image: busybox  
-        command: ["/bin/sh","-c","ping -c 3 www.google.com"]
+        command: ["/bin/sh","-c","ping -c 3 8.8.8.8"]
       restartPolicy: Never 
   # backoffLimit: 4 
   activeDeadlineSeconds: 600   
-  ttlSecondsAfterFinished: 10  
+  ttlSecondsAfterFinished: 30  
