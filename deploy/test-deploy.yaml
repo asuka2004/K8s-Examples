@@ -1,8 +1,8 @@
 apiVersion: apps/v1 ###
 kind: Deployment ##
 metadata:
-  name:  test-deploy   
-  namespace: test 
+  name:  deploy   
+  namespace: prod 
   labels:
     #dep:  test-01
     app: cluster
