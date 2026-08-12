@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "pod-startprobe"
-  namespace: test 
+  name: "startprobe"
+  namespace: prod 
   labels:
     app: "pod-startprobe"
 spec:
   volumes:
   - name: nginx-vol
     hostPath: 
-      path: /app
+      path: /tmp
   - name: nginx-html
     hostPath: 
       path: /html
   containers:
   - name: nginx
-    image: "nginx"
+    image: "nginx:1.20.0-alpine"
     ports:
     - containerPort: 80
     startupProbe:
       exec:
-        command:  ["/bin/sh","-c","cat /app/abc"]  #
+        command:  ["/bin/sh","-c","cat /tmp/abc"]  #
       initialDelaySeconds: 2 #
       periodSeconds: 1  #
       timeoutSeconds: 3  #
@@ -28,7 +28,7 @@ spec:
       failureThreshold: 3 #
     volumeMounts:
     - name: nginx-vol
-      mountPath: /app
+      mountPath: /tmp
     - name: nginx-html
       mountPath: /usr/share/nginx/html
 

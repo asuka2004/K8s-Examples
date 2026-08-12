@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: "probe-ready-1"
-  namespace: test 
+  namespace: prod 
   labels:
     app: "probe"
 spec:

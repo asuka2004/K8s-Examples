@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "probe-liveness-1"
-  namespace: test
+  name: "liveness-1"
+  namespace: prod
   labels:
     app: "probe-liveness-1"
 spec:
@@ -12,7 +12,7 @@ spec:
       path: /tmp
   containers:
   - name: nginx
-    image: "nginx"
+    image: "nginx:1.20.0-alpine"
     ports:
     - containerPort: 80
     volumeMounts:
