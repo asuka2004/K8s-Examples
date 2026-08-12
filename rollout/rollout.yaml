@@ -2,7 +2,7 @@ apiVersion: apps/v1  ###
 kind: Deployment  ## 
 metadata:
   name:  test-rollout   
-  namespace: test
+  namespace: prod
   labels:
     dep:  test-04
 spec:
