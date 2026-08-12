@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: clusterip-none
-  namespace: test
+  name: svc-clusterip-none
+  namespace: prod
 spec:
   selector:
-    app: svc-stateful 
+    app: clust
   # clusterIP: 10.96.88.99
   clusterIP: None  
   type: ClusterIP #

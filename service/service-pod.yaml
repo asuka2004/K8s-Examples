@@ -2,7 +2,7 @@ apiVersion: apps/v1 ###
 kind: Deployment ##
 metadata:
   name:  service-pod   #
-  namespace: test
+  namespace: prod
   labels:
     dep:  test
 spec:
@@ -15,7 +15,6 @@ spec:
   selector:   #
     matchLabels:   #
       app: cluster
-####
   template:
     metadata:   ### pod的metadata
       labels:
