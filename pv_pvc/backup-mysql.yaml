@@ -1,0 +1,65 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-backup-db
+  namespace: prod
+spec:
+  schedule: "0 22 * * *"   
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backupi-db
+            image: mysql:8.0
+            command:
+            - /bin/bash
+            - -c
+            - >
+              mysqldump -h stateful-0.svc-mysql.prod.svc.cluster.local
+              -uroot -p"$MYSQL_ROOT_PASSWORD" db2 > /backup/db2_$(date +%Y%m%d).sql
+            env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: root-password
+            volumeMounts:
+            - name: backup-mysql
+              mountPath: /backup
+          volumes:
+          - name: backup-mysql
+            persistentVolumeClaim:
+              claimName: bk-mysql
+          restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bk-mysql
+  namespace: prod
+  labels:
+    app: mysql
+spec:
+  storageClassName: nfs-storage
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-100m
+  labels:
+    type: nfs
+spec:
+  storageClassName: nfs-storage
+  capacity:
+    storage: 100Mi
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: 192.168.88.60
+    path: /nfs/data/cc  
